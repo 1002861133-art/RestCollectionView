@@ -14,36 +14,28 @@ namespace RestCollectionView
             InitializeComponent();
         }
 
-        private async void OnSearchClicked(object sender, EventArgs e)
+        private async void OnFetchDogClicked(object sender, EventArgs e)
         {
             try
             {
                 loader.IsVisible = true;
                 loader.IsRunning = true;
 
-                string searchText = searchEntry.Text?.ToLower() ?? "";
-
-                // קריאה לשרת
-                var response = await _httpClient.GetAsync("https://jsonplaceholder.typicode.com/posts");
-
+                // Fetch JSON from Dog API
+                var response = await _httpClient.GetAsync("https://dog.ceo/api/breeds/image/random");
                 response.EnsureSuccessStatusCode();
 
                 var json = await response.Content.ReadAsStringAsync();
 
-                var posts = JsonSerializer.Deserialize<List<Post>>(json);
+                // Deserialize JSON
+                var dogData = JsonSerializer.Deserialize<Dog>(json,
+                    new JsonSerializerOptions { PropertyNameCaseInsensitive = true });
 
-                // סינון לפי טקסט
-                if (!string.IsNullOrWhiteSpace(searchText))
+                if (dogData != null && dogData.Status == "success")
                 {
-                    posts = posts?.Where(p => p.Title.ToLower()
-                                                    .Contains(searchText))
-                                                    .ToList();
+                    // Set Image Source
+                    dogImage.Source = ImageSource.FromUri(new Uri(dogData.Message));
                 }
-                if (posts != null)
-                {
-                    resultsCollection.ItemsSource = new ObservableCollection<Post>(posts); ;
-                }
-                
             }
             catch (Exception ex)
             {
@@ -55,5 +47,6 @@ namespace RestCollectionView
                 loader.IsVisible = false;
             }
         }
+       
     }
 }

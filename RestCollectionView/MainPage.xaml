@@ -3,43 +3,29 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="RestCollectionView.MainPage">
 
-    <ScrollView>
-        <VerticalStackLayout Padding="20" Spacing="10">
+    <VerticalStackLayout Padding="20" Spacing="15">
 
-            <Entry x:Name="searchEntry"
-               Placeholder="Search in title..." />
+        <!-- Button to fetch image -->
+        <Button Text="Fetch Random Dog"
+                Clicked="OnFetchDogClicked"
+                FontAttributes="Bold"
+                BackgroundColor="#FFA726"
+                TextColor="White"
+                CornerRadius="10"/>
 
-            <Button Text="Search"
-                Clicked="OnSearchClicked"/>
-
-            <ActivityIndicator x:Name="loader"
+        <!-- Loader -->
+        <ActivityIndicator x:Name="loader"
+                           IsRunning="False"
                            IsVisible="False"
-                           IsRunning="False"/>
+                           HeightRequest="50"/>
 
-            <CollectionView x:Name="resultsCollection">
-                <CollectionView.ItemTemplate>
-                    <DataTemplate>
-                        <Frame
-                CornerRadius="15"
-                Padding="15"
-                Margin="10"
-                HasShadow="True"
-                BackgroundColor="#F0F4FF">
-                            <VerticalStackLayout Spacing="5">
-                                <Label Text="{Binding Title}"
-                           FontSize="18"
-                           FontAttributes="Bold"
-                           TextColor="#1A237E"/>
-                                <Label Text="{Binding Body}"
-                           FontSize="14"
-                           TextColor="#333333"/>
-                            </VerticalStackLayout>
-                        </Frame>
-                    </DataTemplate>
-                </CollectionView.ItemTemplate>
-            </CollectionView>
+        <!-- Image -->
+        <Image x:Name="dogImage"
+               Aspect="AspectFit"
+               HeightRequest="300"
+               BackgroundColor="#EEE"
+               HorizontalOptions="Center"/>
 
-        </VerticalStackLayout>
-    </ScrollView>
+    </VerticalStackLayout>
 
 </ContentPage>
