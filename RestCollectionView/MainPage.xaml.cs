@@ -36,7 +36,8 @@ namespace RestCollectionView
                 if (!string.IsNullOrWhiteSpace(searchText))
                 {
                     posts = posts?.Where(p => p.Title.ToLower()
-                                                    .Contains(searchText))
+                                                    .Contains(searchText) || 
+                                              p.Body.ToLower().Contains(searchText))
                                                     .ToList();
                 }
                 if (posts != null)

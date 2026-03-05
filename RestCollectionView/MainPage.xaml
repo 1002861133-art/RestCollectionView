@@ -1,8 +1,8 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
-<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
-             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+<ContentPage
+	xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+	xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="RestCollectionView.MainPage">
-
     <ScrollView>
         <VerticalStackLayout Padding="20" Spacing="10">
             <Entry x:Name="searchEntry"
@@ -23,50 +23,36 @@
                                Margin="10"
                                HasShadow="True"
                                BackgroundColor="#F0F4FF">
-
-                            <Frame CornerRadius="15"
-                               Padding="15"
-                               Margin="10"
-                               HasShadow="True"
-                               BackgroundColor="#F0F4FF">
-                                <Grid RowDefinitions="Auto, Auto" 
+                            <Grid RowDefinitions="Auto, Auto" 
                                       ColumnDefinitions="80, *" 
                                       RowSpacing="10" 
                                       ColumnSpacing="15">
-
-                                       <Label Grid.Row="0" Grid.Column="0"
+                                <Label Grid.Row="0" Grid.Column="0"
                                            Text="Title:"
                                            FontAttributes="Bold"
                                            TextColor="#1A237E"
                                            VerticalOptions="Center"/>
-
-                                       <Label Grid.Row="0" Grid.Column="1"
+                                <Label Grid.Row="0" Grid.Column="1"
                                            Text="{Binding Title}"
                                            FontSize="18"
                                            FontAttributes="Bold"
                                            TextColor="#1A237E"
                                            VerticalOptions="Center"/>
-
-                                       <Label Grid.Row="1" Grid.Column="0"
+                                <Label Grid.Row="1" Grid.Column="0"
                                            Text="Body:"
                                            FontAttributes="Bold"
                                            TextColor="#333333"
                                            VerticalOptions="Start"/>
-
-                                       <Label Grid.Row="1" Grid.Column="1"
+                                <Label Grid.Row="1" Grid.Column="1"
                                            Text="{Binding Body}"
                                            FontSize="14"
                                            TextColor="#333333"
-                                           VerticalOptions="Start"/>        
-                                </Grid>
-                            </Frame>
+                                           VerticalOptions="Start"/>
+                            </Grid>
                         </Frame>
                     </DataTemplate>
-
                 </CollectionView.ItemTemplate>
             </CollectionView>
-
         </VerticalStackLayout>
     </ScrollView>
-
 </ContentPage>
