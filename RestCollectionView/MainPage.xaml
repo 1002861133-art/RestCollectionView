@@ -5,37 +5,64 @@
 
     <ScrollView>
         <VerticalStackLayout Padding="20" Spacing="10">
-
             <Entry x:Name="searchEntry"
                Placeholder="Search in title..." />
-
             <Button Text="Search"
                 Clicked="OnSearchClicked"/>
-
             <ActivityIndicator x:Name="loader"
                            IsVisible="False"
                            IsRunning="False"/>
-
-            <CollectionView x:Name="resultsCollection">
+            <CollectionView x:Name="resultsCollection"  EmptyView="No items to display" >
+                <CollectionView.ItemsLayout>
+                    <LinearItemsLayout Orientation="Vertical" ItemSpacing="5" />
+                </CollectionView.ItemsLayout>
                 <CollectionView.ItemTemplate>
                     <DataTemplate>
-                        <Frame
-                CornerRadius="15"
-                Padding="15"
-                Margin="10"
-                HasShadow="True"
-                BackgroundColor="#F0F4FF">
-                            <VerticalStackLayout Spacing="5">
-                                <Label Text="{Binding Title}"
-                           FontSize="18"
-                           FontAttributes="Bold"
-                           TextColor="#1A237E"/>
-                                <Label Text="{Binding Body}"
-                           FontSize="14"
-                           TextColor="#333333"/>
-                            </VerticalStackLayout>
+                        <Frame CornerRadius="15"
+                               Padding="15"
+                               Margin="10"
+                               HasShadow="True"
+                               BackgroundColor="#F0F4FF">
+
+                            <Frame CornerRadius="15"
+                               Padding="15"
+                               Margin="10"
+                               HasShadow="True"
+                               BackgroundColor="#F0F4FF">
+                                <Grid RowDefinitions="Auto, Auto" 
+                                      ColumnDefinitions="80, *" 
+                                      RowSpacing="10" 
+                                      ColumnSpacing="15">
+
+                                       <Label Grid.Row="0" Grid.Column="0"
+                                           Text="Title:"
+                                           FontAttributes="Bold"
+                                           TextColor="#1A237E"
+                                           VerticalOptions="Center"/>
+
+                                       <Label Grid.Row="0" Grid.Column="1"
+                                           Text="{Binding Title}"
+                                           FontSize="18"
+                                           FontAttributes="Bold"
+                                           TextColor="#1A237E"
+                                           VerticalOptions="Center"/>
+
+                                       <Label Grid.Row="1" Grid.Column="0"
+                                           Text="Body:"
+                                           FontAttributes="Bold"
+                                           TextColor="#333333"
+                                           VerticalOptions="Start"/>
+
+                                       <Label Grid.Row="1" Grid.Column="1"
+                                           Text="{Binding Body}"
+                                           FontSize="14"
+                                           TextColor="#333333"
+                                           VerticalOptions="Start"/>        
+                                </Grid>
+                            </Frame>
                         </Frame>
                     </DataTemplate>
+
                 </CollectionView.ItemTemplate>
             </CollectionView>
 
