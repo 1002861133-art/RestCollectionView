@@ -20,13 +20,13 @@ namespace RestCollectionView
             {
                 loader.IsVisible = true;
                 loader.IsRunning = true;
-
+                dogImage.IsVisible = false;
                 // Fetch JSON from Dog API
                 var response = await _httpClient.GetAsync("https://dog.ceo/api/breeds/image/random");
                 response.EnsureSuccessStatusCode();
 
                 var json = await response.Content.ReadAsStringAsync();
-
+                await Task.Delay(4000);
                 // Deserialize JSON
                 var dogData = JsonSerializer.Deserialize<Dog>(json,
                     new JsonSerializerOptions { PropertyNameCaseInsensitive = true });
@@ -35,6 +35,7 @@ namespace RestCollectionView
                 {
                     // Set Image Source
                     dogImage.Source = ImageSource.FromUri(new Uri(dogData.Message));
+                    dogImage.IsVisible = true;
                 }
             }
             catch (Exception ex)
