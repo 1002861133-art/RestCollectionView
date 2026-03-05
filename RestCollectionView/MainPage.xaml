@@ -16,12 +16,13 @@
         <!-- Loader -->
         <ActivityIndicator x:Name="loader"
                            IsRunning="False"
+                            Color="Green"
                            IsVisible="False"
                            HeightRequest="50"/>
 
         <!-- Image -->
         <Image x:Name="dogImage"
-               Aspect="AspectFit"
+               Aspect="Fill"
                HeightRequest="300"
                BackgroundColor="#EEE"
                HorizontalOptions="Center"/>

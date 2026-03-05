@@ -7,13 +7,10 @@ namespace RestCollectionView
     public partial class MainPage : ContentPage
     {
         private readonly HttpClient _httpClient = new HttpClient();
-
-
         public MainPage()
         {
             InitializeComponent();
         }
-
         private async void OnFetchDogClicked(object sender, EventArgs e)
         {
             try
@@ -28,8 +25,7 @@ namespace RestCollectionView
                 var json = await response.Content.ReadAsStringAsync();
                 await Task.Delay(1000);
                 // Deserialize JSON
-                var dogData = JsonSerializer.Deserialize<Dog>(json,
-                    new JsonSerializerOptions { PropertyNameCaseInsensitive = true });
+                Dog dogData = JsonSerializer.Deserialize<Dog>(json);
 
                 if (dogData != null && dogData.Status == "success")
                 {
