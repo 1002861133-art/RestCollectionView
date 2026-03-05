@@ -26,7 +26,7 @@ namespace RestCollectionView
                 response.EnsureSuccessStatusCode();
 
                 var json = await response.Content.ReadAsStringAsync();
-                await Task.Delay(4000);
+                await Task.Delay(1000);
                 // Deserialize JSON
                 var dogData = JsonSerializer.Deserialize<Dog>(json,
                     new JsonSerializerOptions { PropertyNameCaseInsensitive = true });
